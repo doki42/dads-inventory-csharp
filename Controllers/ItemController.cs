@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using DadsInventory.Models;
 using DadsInventory.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DadsInventory.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         private readonly IItemRepository _itemRepository;
@@ -30,6 +32,7 @@ namespace DadsInventory.Controllers
             return View(itemsListViewModel);
         }
 
+        [Authorize(Roles = "Dad")]
         public IActionResult Details(int id)
         {
             var item = _itemRepository.GetItemById(id);
