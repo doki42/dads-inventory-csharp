@@ -36,6 +36,15 @@ namespace DadsInventory
                 options.Password.RequiredLength = 8;
                 options.Password.RequireLowercase = true;
             });
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "963113794476-u7mlp2i7s9udb1j4qs0c1vv5b5mjj2j0.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+
+                });
             
             services.ConfigureApplicationCookie(options =>
             {
